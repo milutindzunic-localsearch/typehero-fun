@@ -9,8 +9,8 @@ type BoxToys<
 > = Cnt["length"] extends Num
   ? BoxToys<Toy, Num, Acc | Cnt, [...Cnt, Toy]> // current number is in the union
   : Acc["length"] extends 0
-  ? BoxToys<Toy, Num, Acc, [...Cnt, Toy]>
-  : Acc; // current number is not in the union, check if we have finished or we have yet to add to the accumulator
+  ? BoxToys<Toy, Num, Acc, [...Cnt, Toy]> // we still haven't reached the union's numbers
+  : Acc; // finished recursing
 
 // tests
 type test_doll_actual = BoxToys<"doll", 1>;
